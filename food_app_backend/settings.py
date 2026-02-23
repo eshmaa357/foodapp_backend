@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "food_app",
     "accounts",
     "vendor",
+    "rest_framework_simplejwt",
 
 ]
 
