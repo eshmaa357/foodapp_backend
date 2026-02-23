@@ -13,4 +13,5 @@ class FoodItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.name}({self.vendor.restaurant_name})"
+        vendor_name = self.vendor.restaurant_name if self.vendor else "No Vendor"
+        return f"{self.name} ({vendor_name})"

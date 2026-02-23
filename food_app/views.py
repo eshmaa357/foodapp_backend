@@ -1,27 +1,32 @@
 from rest_framework import generics, permissions
-from .serializers import FoodSerializer
 from .models import FoodItem
+from .serializers import FoodItemSerializer
 from vendor.models import VendorProfile
 
+# Customers - view all available food items (no auth required)
+class FoodListCreateView(generics.ListAPIView):
+    serializer_class = FoodItemSerializer
+    permission_classes = [permissions.AllowAny]
 
-class FoodListCreateView(generics.ListCreateAPIView):
-    queryset = FoodItem.objects.all()
-    serializer_class = FoodSerializer
+    def get_queryset(self):
+        return FoodItem.objects.filter(is_available=True)
 
+# Vendors - list and add their own food items
 class VendorFoodListCreateView(generics.ListCreateAPIView):
-    serializer_class = FoodSerializer
+    serializer_class = FoodItemSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         vendor = VendorProfile.objects.get(user=self.request.user)
         return FoodItem.objects.filter(vendor=vendor)
-    
+
     def perform_create(self, serializer):
         vendor = VendorProfile.objects.get(user=self.request.user)
         serializer.save(vendor=vendor)
 
+# Vendors - edit or delete their own food item
 class VendorFoodDetailView(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = FoodSerializer
+    serializer_class = FoodItemSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
