@@ -4,7 +4,7 @@ from vendor.models import VendorProfile
 
 # Create your models here.
 class FoodItem(models.Model):
-    vendor = models.ForeignKey(VendorProfile, on_delete=models.CASCADE, related_name='foods', null=True, blank=True)
+    restaurant = models.ForeignKey(VendorProfile, on_delete=models.CASCADE, related_name='foods', null=True, blank=True)
     name = models.CharField(max_length=200)
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
@@ -13,5 +13,5 @@ class FoodItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        vendor_name = self.vendor.restaurant_name if self.vendor else "No Vendor"
-        return f"{self.name} ({vendor_name})"
+        restaurant_name = self.restaurant.restaurant_name if self.restaurant else "No Vendor"
+        return f"{self.name} ({restaurant_name})"

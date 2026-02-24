@@ -2,6 +2,7 @@ from rest_framework import generics, permissions
 from .models import FoodItem
 from .serializers import FoodItemSerializer
 from vendor.models import VendorProfile
+from django.shortcuts import get_object_or_404
 
 # Customers - view all available food items (no auth required)
 class FoodListCreateView(generics.ListAPIView):
@@ -31,4 +32,8 @@ class VendorFoodDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         vendor = VendorProfile.objects.get(user=self.request.user)
+        return FoodItem.objects.filter(vendor=vendor)
+
+    def get_queryset(self):
+        vendor = get_object_or_404(VendorProfile, user=self.request.user)
         return FoodItem.objects.filter(vendor=vendor)
