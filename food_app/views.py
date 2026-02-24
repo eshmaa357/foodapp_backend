@@ -23,7 +23,7 @@ class VendorFoodListCreateView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         vendor = VendorProfile.objects.get(user=self.request.user)
-        serializer.save(vendor=vendor)
+        serializer.save(restaurant=vendor)
 
 # Vendors - edit or delete their own food item
 class VendorFoodDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -32,8 +32,6 @@ class VendorFoodDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         vendor = VendorProfile.objects.get(user=self.request.user)
-        return FoodItem.objects.filter(vendor=vendor)
+        return FoodItem.objects.filter(restaurant=vendor)
 
-    def get_queryset(self):
-        vendor = get_object_or_404(VendorProfile, user=self.request.user)
-        return FoodItem.objects.filter(vendor=vendor)
+
