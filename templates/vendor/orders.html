@@ -1,0 +1,130 @@
+{% extends 'vendor/base.html' %}
+{% block title %}Orders{% endblock %}
+
+{% block content %}
+      <div class="card" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+    <h2>Orders</h2>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <a href="{% url 'vendor-order-page' %}" 
+            class="btn" style="padding:6px 14px; background:{% if not current_status %}#1F4E79{% else %}#666{% endif %};">
+            All
+        </a>
+        <a href="{% url 'vendor-order-page' %}?status=pending"
+            class="btn" style="padding:6px 14px; background:{% if current_status == 'pending' %}#ffc107{% else %}#666{% endif %}; color:#000;">
+            Pending
+        </a>
+        <a href="{% url 'vendor-order-page' %}?status=confirmed"
+            class="btn" style="padding:6px 14px; background:{% if current_status == 'confirmed' %}#007bff{% else %}#666{% endif %};">
+            Confirmed
+        </a>
+        <a href="{% url 'vendor-order-page' %}?status=preparing"
+            class="btn" style="padding:6px 14px; background:{% if current_status == 'preparing' %}#fd7e14{% else %}#666{% endif %};">
+            Preparing
+        </a>
+        <a href="{% url 'vendor-order-page' %}?status=ready"
+            class="btn" style="padding:6px 14px; background:{% if current_status == 'ready' %}#28a745{% else %}#666{% endif %};">
+            Ready
+        </a>
+        <a href="{% url 'vendor-order-page' %}?status=picked"
+            class="btn" style="padding:6px 14px; background:{% if current_status == 'picked' %}#17a2b8{% else %}#666{% endif %};">
+            Picked
+        </a>
+        <a href="{% url 'vendor-order-page' %}?status=cancelled"
+            class="btn" style="padding:6px 14px; background:{% if current_status == 'cancelled' %}#dc3545{% else %}#666{% endif %};">
+            Cancelled
+        </a>
+    </div>
+</div>
+
+{% if orders %}
+    {% for order in orders %}
+    <div class="card" style="margin-bottom:15px; border-left: 4px solid
+        {% if order.status == 'pending' %}#ffc107
+        {% elif order.status == 'confirmed' %}#007bff
+        {% elif order.status == 'preparing' %}#fd7e14
+        {% elif order.status == 'ready' %}#28a745
+        {% elif order.status == 'picked' %}#17a2b8
+        {% else %}#dc3545{% endif %};">
+
+<div style="display:flex; justify-content:space-between; align-items:start;">
+    <div>
+        <h3 style="color:#1F4E79;">Order #{{ order.id }}</h3>
+        <p style="color:#666; font-size:13px; margin-top:4px;">
+            Customer: <strong>{{ order.customer_name }}</strong>
+        </p>
+        <p style="color:#666; font-size:13px; margin-top:2px;">
+            Placed: {{ order.created_at }}
+        </p>
+    </div>
+            <div style="text-align:right;">
+                <span style="font-size:18px; font-weight:bold; color:#2E75B6;">
+                    Rs. {{ order.subtotal }}
+                </span>
+                <p style="margin-top:4px;">
+                    <span style="padding:4px 10px; border-radius:20px; font-size:12px; font-weight:bold;
+                        background:
+                        {% if order.status == 'pending' %}#fff3cd; color:#856404;
+                        {% elif order.status == 'confirmed' %}#cce5ff; color:#004085;
+                        {% elif order.status == 'preparing' %}#ffe5d0; color:#7d3a00;
+                        {% elif order.status == 'ready' %}#d4edda; color:#155724;
+                        {% elif order.status == 'picked' %}#d1ecf1; color:#0c5460;
+                        {% else %}#f8d7da; color:#721c24;{% endif %}">
+                        {{ order.status|upper }}
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Order Items -->
+        <div style="margin-top:15px; border-top:1px solid #eee; padding-top:10px;">
+            <h4 style="color:#333; margin-bottom:8px;">Items:</h4>
+            {% for item in order.items %}
+            <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #f5f5f5;">
+                <span>{{ item.food_item_name }} x {{ item.quantity }}</span>
+                <span style="color:#2E75B6;">Rs. {{ item.total }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Customer Note -->
+        {% if order.note %}
+        <div style="margin-top:10px; padding:10px; background:#fffbea; border-radius:6px;">
+            <p style="color:#856404; font-size:13px;">📝 Note: {{ order.note }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Update Status -->
+        {% if order.status != 'picked' and order.status != 'cancelled' %}
+        <div style="margin-top:15px;">
+            <form method="POST" action="{% url 'vendor-order-update-page' order.id %}" style="display:flex; gap:10px; align-items:center;">
+                {% csrf_token %}
+                <select name="status" style="padding:8px; border-radius:6px; border:1px solid #ddd; flex:1;">
+                    {% if order.status == 'pending' %}
+                        <option value="confirmed">Confirm Order</option>
+                        <option value="cancelled">Cancel Order</option>
+                    {% elif order.status == 'confirmed' %}
+                        <option value="preparing">Start Preparing</option>
+                        <option value="cancelled">Cancel Order</option>
+                    {% elif order.status == 'preparing' %}
+                        <option value="ready">Mark as Ready</option>
+                        <option value="cancelled">Cancel Order</option>
+                    {% elif order.status == 'ready' %}
+                        <option value="picked">Mark as Picked</option>
+                    {% endif %}
+                </select>
+                <button type="submit" class="btn" style="padding:8px 20px;">Update</button>
+            </form>
+        </div>
+        {% endif %}
+
+    </div>
+    {% endfor %}
+
+{% else %}
+<div class="card" style="text-align:center; padding:40px;">
+    <p style="font-size:48px;"></p>
+    <p style="color:#666; margin-top:10px;">No orders yet.</p>
+</div>
+{% endif %}
+
+{% endblock %}

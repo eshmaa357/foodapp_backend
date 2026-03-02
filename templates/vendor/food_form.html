@@ -1,0 +1,41 @@
+{% extends 'vendor/base.html' %}
+{% block title %}{{ action }} Food Item{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>{{ action }} Food Item</h2>
+</div>
+
+<div class="card">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>Name</label>
+        <input type="text" name="name" value="{{ food.name }}" required>
+
+        <label>Description</label>
+        <textarea name="description" rows="3">{{ food.description }}</textarea>
+
+        <label>Price (Rs.)</label>
+        <input type="number" name="price" step="0.01" value="{{ food.price }}" required>
+
+        <label>Image </label>
+        {% if food.image %}
+            <div style="margin-bottom:10px;">
+                <img src="{{ food.image }}" alt="Food Image" style="width:100px; height:100px; object-fit:cover; border-radius:8px;">
+            </div>
+        {% endif %}
+        <input type="file" name="image" accept="image/*">
+
+        <label style="display:flex; align-items:center; gap:10px;">
+            <input type="checkbox" name="is_available" style="width:auto;"
+                {% if food.is_available or action == 'Add' %}checked{% endif %}>
+            Available
+        </label>
+
+        <br>
+        <button type="submit" class="btn">{{ action }} Item</button>
+        <a href="{% url 'vendor-food-page' %}" style="margin-left:15px; color:#666;">Cancel</a>
+    </form>
+</div>
+{% endblock %}

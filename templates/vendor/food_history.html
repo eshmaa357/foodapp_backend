@@ -1,0 +1,46 @@
+{% extends 'vendor/base.html' %}
+{% block title %}Food History{% endblock %}
+
+{% block content %}
+<div class="card" style="display:flex; justify-content:space-between; align-items:center;">
+    <h2>Food Item History</h2>
+    <a href="{% url 'vendor-food-page' %}" class="btn">← Back to Food Items</a>
+</div>
+
+<div class="card">
+    {% if history %}
+    <table>
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Available</th>
+                <th>Action</th>
+                <th>Changed At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for h in history %}
+            <tr>
+                <td>{{ h.name }}</td>
+                <td>Rs. {{ h.price }}</td>
+                <td>{% if h.is_available %}{% else %}{% endif %}</td>
+                <td>
+                    {% if h.action == 'CREATED' %}
+                        <span style="color:green;">Created</span>
+                    {% elif h.action == 'UPDATED' %}
+                        <span style="color:orange;">Updated</span>
+                    {% else %}
+                        <span style="color:red;">Deleted</span>
+                    {% endif %}
+                </td>
+                <td>{{ h.changed_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p style="color:#666;">No history yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

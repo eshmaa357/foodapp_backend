@@ -8,6 +8,7 @@ class VendorProfile(models.Model):
     address = models.TextField()
     contact_number = models.CharField(max_length=20, blank=True,null=True)
     logo = models.ImageField(upload_to='vendor_logos/',blank=True,null=True)
+    is_static_menu = models.BooleanField(default=False)
     
     def __str__(self):
         return self.restaurant_name

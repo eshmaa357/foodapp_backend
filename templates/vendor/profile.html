@@ -1,0 +1,35 @@
+{% extends 'vendor/base.html' %}
+{% block title %}Vendor Profile{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <h2>Restaurant Profile</h2>
+    <p style="color:#666; margin-top:8px;">View and update your restaurant details.</p>
+</div>
+
+<div class="card">
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Restaurant Name</label>
+        <input type="text" name="restaurant_name" value="{{ profile.restaurant_name }}" required>
+
+        <label>Address</label>
+        <textarea name="address" rows="3">{{ profile.address }}</textarea>
+
+        <label>Contact Number</label>
+        <input type="text" name="contact_number" value="{{ profile.contact_number }}">
+
+        <label>Logo</label>
+        {% if profile.logo %}
+            <div style="margin-bottom:10px;">
+                <img src="{{ profile.logo }}" alt="Logo" style="width:100px; height:100px; object-fit:cover; border-radius:8px;">
+            </div>
+        {% endif %}
+        <input type="file" name="logo" accept="image/*">
+
+        <button type="submit" class="btn">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

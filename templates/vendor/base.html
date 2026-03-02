@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ISHMA Food App{% endblock %}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; }
+
+        .navbar {
+            background: #1F4E79;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar h1 { font-size: 20px; }
+        .navbar a { color: white; text-decoration: none; margin-left: 20px; }
+        .navbar a:hover { text-decoration: underline; }
+
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .card h2 { color: #1F4E79; margin-bottom: 15px; }
+
+        .btn {
+            background: #2E75B6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover { background: #1F4E79; }
+        .btn-danger { background: #c0392b; }
+        .btn-danger:hover { background: #a93226; }
+
+        .alert { padding: 10px 15px; border-radius: 5px; margin-bottom: 15px; }
+        .alert-success { background: #d4edda; color: #155724; }
+        .alert-error { background: #f8d7da; color: #721c24; }
+
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #2E75B6; color: white; padding: 10px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #eee; }
+        tr:hover { background: #f9f9f9; }
+
+        form label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+        form input, form textarea {
+            width: 100%; padding: 10px; margin-bottom: 15px;
+            border: 1px solid #ddd; border-radius: 5px; font-size: 14px;
+        }
+        form input:focus, form textarea:focus {
+            outline: none; border-color: #2E75B6;
+        }
+    </style>
+</head>
+<body>
+
+{% if request.session.vendor_id %}
+<nav class="navbar">
+    <h1>ISHMA Food App</h1>
+    <div>
+        <span>Welcome, {{ request.session.username }}</span>
+        <a href="{% url 'vendor-dashboard' %}">Dashboard</a>
+        <a href="{% url 'vendor-profile-page' %}">Profile</a>
+        <a href="{% url 'vendor-food-page' %}">Food Items</a>
+        <a href="{% url 'vendor-order-page' %}">Orders</a>
+        <a href="{% url 'vendor-logout' %}">Logout</a>
+    </div>
+</nav>
+{% endif %}
+
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>  

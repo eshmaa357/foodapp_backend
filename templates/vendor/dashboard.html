@@ -1,0 +1,43 @@
+{% extends 'vendor/base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Welcome, {{ request.session.restaurant_name }} </h2>
+    <p style="color:#666; margin-top:8px;">Manage your restaurant from here.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+    
+    <a href="{% url 'vendor-food-page' %}" style="text-decoration:none; color:inherit;">
+        <div class="card" style="text-align:center; cursor:pointer; transition: transform 0.2s;"
+            onmouseover="this.style.transform='translateY(-4px)'"
+            onmouseout="this.style.transform='translateY(0)'">
+            <h3 style="color:#2E75B6; font-size:36px;">{{ food_count }}</h3>
+            <p>Total Food Items</p>
+            <p style="color:#aaa; font-size:12px; margin-top:5px;">Click to manage →</p>
+        </div>
+    </a>
+
+    <a href="{% url 'vendor-order-page' %}" style="text-decoration:none; color:inherit;">
+        <div class="card" style="text-align:center; cursor:pointer; transition: transform 0.2s;"
+            onmouseover="this.style.transform='translateY(-4px)'"
+            onmouseout="this.style.transform='translateY(0)'">
+            <h3 style="color:#2E75B6; font-size:36px;">{{ order_count }}</h3>
+            <p>Total Orders</p>
+            <p style="color:#aaa; font-size:12px; margin-top:5px;">Click to manage →</p>
+        </div>
+    </a>
+
+    <a href="#" style="text-decoration:none; color:inherit;">
+        <div class="card" style="text-align:center; cursor:pointer; transition: transform 0.2s;"
+            onmouseover="this.style.transform='translateY(-4px)'"
+            onmouseout="this.style.transform='translateY(0)'">
+            <h3 style="color:#2E75B6; font-size:36px;">--</h3>
+            <p>Rating</p>
+            <p style="color:#aaa; font-size:12px; margin-top:5px;">Click to view →</p>
+        </div>
+    </a>
+
+</div>
+{% endblock %}
