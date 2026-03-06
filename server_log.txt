@@ -1,0 +1,582 @@
+Watching for file changes with StatReloader
+Internal Server Error: /vendors/profile/
+Traceback (most recent call last):
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\generics.py", line 256, in get
+    return self.retrieve(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "E:\office\foodapp_backend\vendor\views.py", line 33, in get_object
+    return self.request.user.vendor_profile
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 520, in __get__
+    raise self.RelatedObjectDoesNotExist(
+    ...<2 lines>...
+    )
+accounts.models.User.vendor_profile.RelatedObjectDoesNotExist: User has no vendor_profile.
+[05/Mar/2026 17:54:42] "GET /vendors/profile/ HTTP/1.1" 500 110449
+Internal Server Error: /foods/vendor/
+Traceback (most recent call last):
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\food_app\views.py", line 33, in perform_create
+    vendor = VendorProfile.objects.get(user=self.request.user)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\db\models\query.py", line 639, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+vendor.models.VendorProfile.DoesNotExist: VendorProfile matching query does not exist.
+[05/Mar/2026 17:54:42] "POST /foods/vendor/ HTTP/1.1" 500 117979
+Internal Server Error: /vendors/foods/add/
+Traceback (most recent call last):
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\generic\base.py", line 145, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\vendor\views.py", line 187, in post
+    print("RESPONSE:", response.text)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\x80' in position 8264: character maps to <undefined>
+[05/Mar/2026 17:54:42] "POST /vendors/foods/add/ HTTP/1.1" 500 98980
+E:\office\foodapp_backend\vendor\views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 05, 2026 - 17:47:41
+Django version 6.0.2, using settings 'food_app_backend.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+STATUS: 500
+Watching for file changes with StatReloader
+Internal Server Error: /vendors/profile/
+Traceback (most recent call last):
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\generics.py", line 256, in get
+    return self.retrieve(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "E:\office\foodapp_backend\vendor\views.py", line 33, in get_object
+    return self.request.user.vendor_profile
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 520, in __get__
+    raise self.RelatedObjectDoesNotExist(
+    ...<2 lines>...
+    )
+accounts.models.User.vendor_profile.RelatedObjectDoesNotExist: User has no vendor_profile.
+[05/Mar/2026 17:56:23] "GET /vendors/profile/ HTTP/1.1" 500 110449
+Internal Server Error: /foods/vendor/
+Traceback (most recent call last):
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\food_app\views.py", line 33, in perform_create
+    vendor = VendorProfile.objects.get(user=self.request.user)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\db\models\query.py", line 639, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+vendor.models.VendorProfile.DoesNotExist: VendorProfile matching query does not exist.
+[05/Mar/2026 17:56:23] "POST /foods/vendor/ HTTP/1.1" 500 117979
+Internal Server Error: /vendors/foods/add/
+Traceback (most recent call last):
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\generic\base.py", line 145, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\vendor\views.py", line 187, in post
+    print("RESPONSE:", response.text.encode('utf-8', errors='replace').decode('utf-8'))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\x80' in position 8264: character maps to <undefined>
+[05/Mar/2026 17:56:23] "POST /vendors/foods/add/ HTTP/1.1" 500 99368
+Not Found: /favicon.ico
+[05/Mar/2026 17:56:23] "GET /favicon.ico HTTP/1.1" 404 2843
+E:\office\foodapp_backend\vendor\views.py changed, reloading.
+RESPONSE: Performing system checks...
+
+System check identified no issues (0 silenced).
+March 05, 2026 - 17:56:14
+Django version 6.0.2, using settings 'food_app_backend.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+STATUS: 500
+Watching for file changes with StatReloader
+Internal Server Error: /vendors/profile/
+Traceback (most recent call last):
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\generics.py", line 256, in get
+    return self.retrieve(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "E:\office\foodapp_backend\vendor\views.py", line 33, in get_object
+    return self.request.user.vendor_profile
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 520, in __get__
+    raise self.RelatedObjectDoesNotExist(
+    ...<2 lines>...
+    )
+accounts.models.User.vendor_profile.RelatedObjectDoesNotExist: User has no vendor_profile.
+[05/Mar/2026 17:56:50] "GET /vendors/profile/ HTTP/1.1" 500 110449
+Internal Server Error: /foods/vendor/
+Traceback (most recent call last):
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\food_app\views.py", line 33, in perform_create
+    vendor = VendorProfile.objects.get(user=self.request.user)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\db\models\query.py", line 639, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+vendor.models.VendorProfile.DoesNotExist: VendorProfile matching query does not exist.
+[05/Mar/2026 17:56:50] "POST /foods/vendor/ HTTP/1.1" 500 117979
+[05/Mar/2026 17:56:50] "POST /vendors/foods/add/ HTTP/1.1" 200 3883
+Not Found: /favicon.ico
+[05/Mar/2026 17:56:50] "GET /favicon.ico HTTP/1.1" 404 2843
+Internal Server Error: /vendors/profile/
+Traceback (most recent call last):
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\generics.py", line 256, in get
+    return self.retrieve(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "E:\office\foodapp_backend\vendor\views.py", line 33, in get_object
+    return self.request.user.vendor_profile
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 520, in __get__
+    raise self.RelatedObjectDoesNotExist(
+    ...<2 lines>...
+    )
+accounts.models.User.vendor_profile.RelatedObjectDoesNotExist: User has no vendor_profile.
+[05/Mar/2026 17:57:12] "GET /vendors/profile/ HTTP/1.1" 500 110449
+Internal Server Error: /foods/vendor/
+Traceback (most recent call last):
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\food_app\views.py", line 33, in perform_create
+    vendor = VendorProfile.objects.get(user=self.request.user)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\db\models\query.py", line 639, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+vendor.models.VendorProfile.DoesNotExist: VendorProfile matching query does not exist.
+[05/Mar/2026 17:57:12] "POST /foods/vendor/ HTTP/1.1" 500 117979
+[05/Mar/2026 17:57:12] "POST /vendors/foods/add/ HTTP/1.1" 200 3883
+[05/Mar/2026 17:57:57] "GET /admin/vendor/vendorprofile/add/ HTTP/1.1" 200 17010
+[05/Mar/2026 17:57:58] "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+[05/Mar/2026 17:57:58] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[05/Mar/2026 17:57:58] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+[05/Mar/2026 17:57:58] "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+[05/Mar/2026 17:57:58] "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+[05/Mar/2026 17:57:58] "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+E:\office\foodapp_backend\vendor\admin.py changed, reloading.
+RESPONSE: Performing system checks...
+
+System check identified no issues (0 silenced).
+March 05, 2026 - 17:56:48
+Django version 6.0.2, using settings 'food_app_backend.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+Internal Server Error: /admin/vendor/vendorprofile/add/
+Traceback (most recent call last):
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\contrib\admin\options.py", line 710, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\contrib\admin\sites.py", line 247, in inner
+    return view(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\contrib\admin\options.py", line 1942, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\contrib\admin\options.py", line 1798, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\contrib\admin\options.py", line 1835, in _changeform_view
+    fieldsets = self.get_fieldsets(request, obj)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\contrib\admin\options.py", line 405, in get_fieldsets
+    return [(None, {"fields": self.get_fields(request, obj)})]
+                              ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\contrib\admin\options.py", line 396, in get_fields
+    form = self._get_form_for_get_fields(request, obj)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\contrib\admin\options.py", line 779, in _get_form_for_get_fields
+    return self.get_form(request, obj, fields=None)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\contrib\admin\options.py", line 830, in get_form
+    return modelform_factory(self.model, **defaults)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\forms\models.py", line 675, in modelform_factory
+    return type(form)(class_name, (form,), form_class_attrs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\forms\models.py", line 314, in __new__
+    fields = fields_for_model(
+        opts.model,
+    ...<11 lines>...
+        form_declared_fields=new_class.declared_fields,
+    )
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\forms\models.py", line 243, in fields_for_model
+    formfield = formfield_callback(f, **kwargs)
+  File "E:\office\foodapp_backend\fenv\Lib\site-packages\django\contrib\admin\options.py", line 182, in formfield_for_dbfield
+    formfield = self.formfield_for_foreignkey(db_field, request, **kwargs)
+  File "E:\office\foodapp_backend\vendor\admin.py", line 25, in formfield_for_foreignkey
+    kwargs['queryset'] = User.objects.filter(is_vendor=True, vendor_profile__isnull=True)
+                         ^^^^
+NameError: name 'User' is not defined
+[05/Mar/2026 18:00:21] "GET /admin/vendor/vendorprofile/add/ HTTP/1.1" 500 172108
+Not Found: /favicon.ico
+[05/Mar/2026 18:00:21] "GET /favicon.ico HTTP/1.1" 404 2843
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 05, 2026 - 17:59:58
+Django version 6.0.2, using settings 'food_app_backend.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+E:\office\foodapp_backend\vendor\admin.py changed, reloading.
+Watching for file changes with StatReloader
+E:\office\foodapp_backend\vendor\admin.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 05, 2026 - 18:01:56
+Django version 6.0.2, using settings 'food_app_backend.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+[05/Mar/2026 18:02:26] "GET /admin/vendor/vendorprofile/add/ HTTP/1.1" 200 16740
+[05/Mar/2026 18:02:26] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[05/Mar/2026 18:07:37] "POST /admin/vendor/vendorprofile/add/ HTTP/1.1" 302 0
+[05/Mar/2026 18:07:37] "GET /admin/vendor/vendorprofile/ HTTP/1.1" 200 15400
+[05/Mar/2026 18:07:37] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[05/Mar/2026 18:07:37] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+Unauthorized: /vendors/profile/
+[05/Mar/2026 18:07:48] "GET /vendors/profile/ HTTP/1.1" 401 172
+[05/Mar/2026 18:07:48] "POST /vendors/foods/add/ HTTP/1.1" 302 0
+[05/Mar/2026 18:07:48] "GET /vendors/login/ HTTP/1.1" 200 3143
+[05/Mar/2026 18:07:57] "POST /api/accounts/login/ HTTP/1.1" 200 561
+[05/Mar/2026 18:07:57] "POST /vendors/login/ HTTP/1.1" 302 0
+[05/Mar/2026 18:07:57] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:07:57] "GET /foods/vendor/ HTTP/1.1" 200 2
+[05/Mar/2026 18:07:57] "GET /foods/orders/vendor/ HTTP/1.1" 200 2
+[05/Mar/2026 18:07:57] "GET /vendors/dashboard/ HTTP/1.1" 200 4505
+[05/Mar/2026 18:08:00] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:08:00] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:08:00] "GET /vendors/profile-page/ HTTP/1.1" 200 3819
+[05/Mar/2026 18:08:00] "GET /media/vendor_logos/vendor3.jpg HTTP/1.1" 200 22729
+[05/Mar/2026 18:08:06] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:08:06] "GET /foods/vendor/ HTTP/1.1" 200 2
+[05/Mar/2026 18:08:06] "GET /vendors/foods/ HTTP/1.1" 200 3364
+[05/Mar/2026 18:08:08] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:08:08] "GET /vendors/foods/add/ HTTP/1.1" 200 3786
+[05/Mar/2026 18:09:02] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:09:02] "POST /foods/vendor/ HTTP/1.1" 201 257
+[05/Mar/2026 18:09:02] "POST /vendors/foods/add/ HTTP/1.1" 302 0
+[05/Mar/2026 18:09:02] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:09:02] "GET /foods/vendor/ HTTP/1.1" 200 259
+[05/Mar/2026 18:09:02] "GET /vendors/foods/ HTTP/1.1" 200 4411
+[05/Mar/2026 18:09:02] "GET /media/food_images/meat_lovers_pizza.jpg HTTP/1.1" 200 177971
+[05/Mar/2026 18:09:05] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:09:05] "GET /vendors/foods/add/ HTTP/1.1" 200 3786
+[05/Mar/2026 18:09:41] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:09:41] "POST /foods/vendor/ HTTP/1.1" 201 242
+[05/Mar/2026 18:09:41] "POST /vendors/foods/add/ HTTP/1.1" 302 0
+[05/Mar/2026 18:09:41] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:09:41] "GET /foods/vendor/ HTTP/1.1" 200 502
+[05/Mar/2026 18:09:41] "GET /vendors/foods/ HTTP/1.1" 200 5525
+[05/Mar/2026 18:09:42] "GET /media/food_images/meat_lovers_pizza.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:09:42] "GET /media/food_images/butter_scotch_cake.jpg HTTP/1.1" 200 135136
+[05/Mar/2026 18:09:47] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:09:47] "GET /vendors/foods/add/ HTTP/1.1" 200 3786
+[05/Mar/2026 18:10:24] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:10:24] "POST /foods/vendor/ HTTP/1.1" 201 217
+[05/Mar/2026 18:10:24] "POST /vendors/foods/add/ HTTP/1.1" 302 0
+[05/Mar/2026 18:10:24] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:10:25] "GET /foods/vendor/ HTTP/1.1" 200 720
+[05/Mar/2026 18:10:25] "GET /vendors/foods/ HTTP/1.1" 200 6628
+[05/Mar/2026 18:10:25] "GET /media/food_images/meat_lovers_pizza.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:10:25] "GET /media/food_images/butter_scotch_cake.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:10:25] "GET /media/food_images/fries.png HTTP/1.1" 200 40674
+[05/Mar/2026 18:10:28] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:10:28] "GET /vendors/foods/add/ HTTP/1.1" 200 3786
+[05/Mar/2026 18:10:53] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:10:53] "POST /foods/vendor/ HTTP/1.1" 201 230
+[05/Mar/2026 18:10:53] "POST /vendors/foods/add/ HTTP/1.1" 302 0
+[05/Mar/2026 18:10:53] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:10:53] "GET /foods/vendor/ HTTP/1.1" 200 951
+[05/Mar/2026 18:10:53] "GET /vendors/foods/ HTTP/1.1" 200 7739
+[05/Mar/2026 18:10:53] "GET /media/food_images/meat_lovers_pizza.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:10:53] "GET /media/food_images/butter_scotch_cake.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:10:53] "GET /media/food_images/fries.png HTTP/1.1" 304 0
+[05/Mar/2026 18:10:53] "GET /media/food_images/buff_choila.jpg HTTP/1.1" 200 362325
+[05/Mar/2026 18:10:55] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:10:55] "GET /vendors/foods/add/ HTTP/1.1" 200 3786
+[05/Mar/2026 18:11:24] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:11:24] "POST /foods/vendor/ HTTP/1.1" 201 254
+[05/Mar/2026 18:11:24] "POST /vendors/foods/add/ HTTP/1.1" 302 0
+[05/Mar/2026 18:11:24] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:11:24] "GET /foods/vendor/ HTTP/1.1" 200 1206
+[05/Mar/2026 18:11:24] "GET /vendors/foods/ HTTP/1.1" 200 8871
+[05/Mar/2026 18:11:24] "GET /media/food_images/meat_lovers_pizza.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:11:25] "GET /media/food_images/fries.png HTTP/1.1" 304 0
+[05/Mar/2026 18:11:25] "GET /media/food_images/butter_scotch_cake.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:11:25] "GET /media/food_images/buff_choila.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:11:25] "GET /media/food_images/buff_keema_noodles.jpg HTTP/1.1" 200 170288
+[05/Mar/2026 18:11:33] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:11:33] "GET /foods/orders/vendor/ HTTP/1.1" 200 2
+[05/Mar/2026 18:11:33] "GET /vendors/orders/ HTTP/1.1" 200 4198
+[05/Mar/2026 18:11:37] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:11:37] "GET /foods/orders/vendor/?status=cancelled HTTP/1.1" 200 2
+[05/Mar/2026 18:11:37] "GET /vendors/orders/?status=cancelled HTTP/1.1" 200 4198
+[05/Mar/2026 18:11:38] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:11:38] "GET /foods/vendor/ HTTP/1.1" 200 1206
+[05/Mar/2026 18:11:38] "GET /vendors/foods/ HTTP/1.1" 200 8767
+[05/Mar/2026 18:11:38] "GET /media/food_images/meat_lovers_pizza.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:11:39] "GET /media/food_images/buff_choila.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:11:39] "GET /media/food_images/fries.png HTTP/1.1" 304 0
+[05/Mar/2026 18:11:39] "GET /media/food_images/butter_scotch_cake.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:11:39] "GET /media/food_images/buff_keema_noodles.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:11:41] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:11:41] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:11:41] "GET /vendors/profile-page/ HTTP/1.1" 200 3819
+[05/Mar/2026 18:11:41] "GET /media/vendor_logos/vendor3.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:11:44] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:11:44] "GET /foods/vendor/ HTTP/1.1" 200 1206
+[05/Mar/2026 18:11:44] "GET /foods/orders/vendor/ HTTP/1.1" 200 2
+[05/Mar/2026 18:11:44] "GET /vendors/dashboard/ HTTP/1.1" 200 4505
+[05/Mar/2026 18:11:49] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:11:49] "GET /foods/vendor/ HTTP/1.1" 200 1206
+[05/Mar/2026 18:11:49] "GET /vendors/foods/ HTTP/1.1" 200 8767
+[05/Mar/2026 18:11:49] "GET /media/food_images/fries.png HTTP/1.1" 304 0
+[05/Mar/2026 18:11:49] "GET /media/food_images/buff_keema_noodles.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:11:49] "GET /media/food_images/buff_choila.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:11:50] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:11:50] "GET /foods/vendor/13/ HTTP/1.1" 200 257
+[05/Mar/2026 18:11:50] "GET /vendors/foods/13/ HTTP/1.1" 200 4716
+[05/Mar/2026 18:12:05] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:12:05] "GET /vendors/foods/add/ HTTP/1.1" 200 3786
+[05/Mar/2026 18:12:26] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:12:26] "POST /foods/vendor/ HTTP/1.1" 201 226
+[05/Mar/2026 18:12:26] "POST /vendors/foods/add/ HTTP/1.1" 302 0
+[05/Mar/2026 18:12:26] "GET /vendors/profile/ HTTP/1.1" 200 185
+[05/Mar/2026 18:12:26] "GET /foods/vendor/ HTTP/1.1" 200 1433
+[05/Mar/2026 18:12:26] "GET /vendors/foods/ HTTP/1.1" 200 9979
+[05/Mar/2026 18:12:26] "GET /media/food_images/meat_lovers_pizza.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:12:26] "GET /media/food_images/fries.png HTTP/1.1" 304 0
+[05/Mar/2026 18:12:26] "GET /media/food_images/butter_scotch_cake.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:12:26] "GET /media/food_images/buff_choila.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:12:26] "GET /media/food_images/buff_keema_noodles.jpg HTTP/1.1" 304 0
+[05/Mar/2026 18:12:26] "GET /media/food_images/momo_0WqxD50.png HTTP/1.1" 200 1067779

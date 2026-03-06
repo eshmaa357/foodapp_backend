@@ -183,9 +183,6 @@ class VendorFoodAddView(View):
             headers={'Authorization': f'Bearer {token}'}
         )
 
-        print("STATUS:", response.status_code)
-        print("RESPONSE:", response.text)
-
         if response.status_code == 201:
             messages.success(request, 'Food item added successfully!')
             return redirect('vendor-food-page')
