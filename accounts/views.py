@@ -1,10 +1,13 @@
-from rest_framework import generics, status
+from rest_framework import generics, status,permissions
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import RegisterSerializer, LoginSerializer
+from .models import CustomerProfile
+from .serializers import (RegisterSerializer, LoginSerializer,CustomerProfileSerializer,DeleteAccountSerializer)
+
+
 
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
@@ -41,3 +44,34 @@ class LoginView(APIView):
             'role': 'vendor' if user.is_vendor else 'customer',
             'restaurant_name': restaurant_name,
         })
+    
+class CustomerProfileView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self,request):
+        profile, created = CustomerProfile.objects.get_or_create(user=request.user)
+        serializer = CustomerProfileSerializer(profile)
+        return Response(serializer.data)
+
+    def patch(self,request):
+        profile,created = CustomerProfile.objects.get_or_create(user=request.user)
+        serializer = CustomerProfileSerializer(profile,data=request.data,partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class DeleteAccountView(APIView):
+    permission_classes=[permissions.IsAuthenticated]
+
+    def delete(self,request):
+        password = request.data.get('password')
+        if not password:
+            return Response({'error':'Password is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if not request.user.check_password(password):
+            return Response({'error': 'Incorrect password'},status=status.HTTP_400_BAD_REQUEST)
+
+        request.user.delete()
+        return Response({'message':'Account deleted successfully'}, status=status.HTTP_200_OK)
+        

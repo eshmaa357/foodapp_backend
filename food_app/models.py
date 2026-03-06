@@ -93,3 +93,17 @@ class OrderItem(models.Model):
 
     def get_total(self):
         return self.price * self.quantity
+    
+
+class Rating(models.Model):
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name='ratings')
+    vendor = models.ForeignKey(VendorProfile, on_delete=models.CASCADE, related_name='ratings')
+    order = models.ForeignKey(VendorOrder, on_delete=models.CASCADE, related_name='rating')
+    stars = models.PositiveSmallIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['customer','vendor','order']
+
+    def __str__(self):
+        return f"{self.customer.username} rated {self.vendor.restaurant_name} - {self.stars} stars"

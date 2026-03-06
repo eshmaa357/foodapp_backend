@@ -29,15 +29,15 @@
         </div>
     </a>
 
-    <a href="#" style="text-decoration:none; color:inherit;">
-        <div class="card" style="text-align:center; cursor:pointer; transition: transform 0.2s;"
-            onmouseover="this.style.transform='translateY(-4px)'"
-            onmouseout="this.style.transform='translateY(0)'">
-            <h3 style="color:#2E75B6; font-size:36px;">--</h3>
-            <p>Rating</p>
-            <p style="color:#aaa; font-size:12px; margin-top:5px;">Click to view →</p>
-        </div>
-    </a>
+<a href="{% url 'vendor-rating-page' %}" style="text-decoration:none; color:inherit;">
+    <div class="card" style="text-align:center; cursor:pointer; transition: transform 0.2s;"
+        onmouseover="this.style.transform='translateY(-4px)'"
+        onmouseout="this.style.transform='translateY(0)'">
+        <h3 style="color:#2E75B6; font-size:36px;">{{ avg_rating }}⭐</h3>
+        <p>Average Rating</p>
+        <p style="color:#aaa; font-size:12px; margin-top:5px;">Click to view →</p>
+    </div>
+</a>
 
 </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User,CustomerProfile
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import get_user_model
 
@@ -19,7 +19,23 @@ class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField(write_only=True)
 
+class CustomerProfileSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username', read_only=True)
+    email = serializers.EmailField(source='user.email')
 
+    class Meta:
+        model = CustomerProfile
+        fields = ['id', 'username','email','phone_number','profile_picture','address']
+
+    def update(self,instance,validated_data):
+        user_data = validated_data.pop('user',{})
+        if 'email' in user_data:
+            instance.user.email = user_data['email']
+            instance.user.save()
+        return super().update(instance,validated_data)
+
+class DeleteAccountSerializer(serializers.Serializer):
+    password = serializers.CharField(write_only=True)
 
 
 

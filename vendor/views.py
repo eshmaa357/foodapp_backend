@@ -7,6 +7,7 @@ from rest_framework import generics, permissions
 import requests
 from vendor.models import VendorProfile
 from django.contrib.auth import get_user_model
+from .models import Rating
 
 
 def is_token_valid(request):
@@ -71,27 +72,40 @@ class VendorLogoutView(View):
 
 class VendorDashboardView(View):
     def get(self, request):
+
         if not is_token_valid(request):
             return redirect('vendor-login')
-        
+
         token = request.session['vendor_token']
 
+        # Get vendor foods
         response = requests.get(
             request.build_absolute_uri('/foods/vendor/'),
             headers={'Authorization': f'Bearer {token}'}
         )
         foods = response.json() if response.status_code == 200 else []
+
+        # Get vendor orders
         order_response = requests.get(
-        request.build_absolute_uri('/foods/orders/vendor/'),
-        headers={'Authorization': f'Bearer {token}'}
-    )
+            request.build_absolute_uri('/foods/orders/vendor/'),
+            headers={'Authorization': f'Bearer {token}'}
+        )
         orders = order_response.json() if order_response.status_code == 200 else []
+
+        # Get vendor rating
+        vendor_id = request.session.get('vendor_id')
+        ratings = Rating.objects.filter(vendor_id=vendor_id)
+
+        avg_rating = 0
+        if ratings.exists():
+            avg_rating = round(sum(r.stars for r in ratings) / ratings.count(), 1)
 
         return render(request, 'vendor/dashboard.html', {
             'food_count': len(foods),
             'order_count': len(orders),
+            'avg_rating': avg_rating
         })
-
+       
 
 class VendorProfilePageView(View):
     def get(self, request):
@@ -320,3 +334,21 @@ class VendorOrderUpdatePageView(View):
         messages.success(request, f'Order status updated to {new_status}!')
         return redirect('vendor-order-page')
     
+
+class VendorRatingPageView(View):
+    def get(self,request):
+        if not is_token_valid(request):
+            return redirect('vendor-login')
+
+        vendor_id = request.session.get('vendor_id')
+        ratings = Rating.objects.filter(vendor__id = vendor_id).order_by('-created_at')
+
+        avg = 0
+        if ratings.exists():
+            avg = round(sum(r.stars for r in ratings) / ratings.count(), 1)
+
+        return render(request, 'vendor/ratings.html',{
+            'ratings': ratings,
+            'average': avg,
+            'total':ratings.count()
+        })

@@ -20,6 +20,12 @@ from django.contrib.auth import get_user_model
 class VendorProfileAdmin(admin.ModelAdmin):
     list_display = ['restaurant_name', 'user', 'is_static_menu']
     list_editable = ['is_static_menu']
+    readonly_fields = []
+
+    def get_readonly_fields(self,request, obj=None):
+        if obj:
+            return['user']
+        return []
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         User = get_user_model()

@@ -1,0 +1,41 @@
+{% extends 'vendor/base.html' %}
+{% block title %}Ratings{% endblock %}
+
+{% block content %}
+<div class="card" style="text-align:center; padding:30px;">
+    <p style="font-size:48px;">⭐</p>
+    <h2 style="color:#1F4E79; font-size:48px;">{{ average }}</h2>
+    <p style="color:#666;">out of 5 — based on {{ total }} rating{{ total|pluralize }}</p>
+    <div style="font-size:28px; margin-top:10px;">
+        {% for i in "12345" %}
+            {% if forloop.counter <= average %}⭐{% else %}☆{% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% if ratings %}
+<div class="card">
+    <h3 style="color:#1F4E79; margin-bottom:15px;">All Ratings</h3>
+    {% for rating in ratings %}
+    <div style="padding:12px 0; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+            <p style="font-weight:bold;">👤 {{ rating.customer.username }}</p>
+            <p style="color:#666; font-size:13px;">{{ rating.created_at }}</p>
+        </div>
+        <div style="font-size:22px;">
+            {% for i in "12345" %}
+                {% if forloop.counter <= rating.stars %}⭐{% else %}☆{% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="card" style="text-align:center; padding:40px;">
+    <p style="font-size:48px;"></p>
+    <p style="color:#666; margin-top:10px;">No ratings yet.</p>
+</div>
+{% endif %}
+
+{% endblock %}

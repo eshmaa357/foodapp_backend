@@ -1,11 +1,14 @@
 from django.urls import path
-from .views import (FoodListCreateView,VendorFoodListCreateView,VendorFoodDetailView,CustomerMenuView,PlaceOrderView,
+from .views import (FoodListCreateView,
+VendorFoodListCreateView,VendorFoodDetailView,
+CustomerMenuView,PlaceOrderView,
 CustomerOrderListView,
 CustomerCancelOrderView,
 CustomerOrderDetailView,
 VendorOrderListView,
 VendorOrderUpdateView,
-VendorMenuView,)
+VendorMenuView, SubmitRatingView,VendorRatingListView,
+VendorAverageRatingView)
 
 
 urlpatterns = [
@@ -28,4 +31,8 @@ urlpatterns = [
     path('orders/vendor/<int:pk>/update/', VendorOrderUpdateView.as_view(), name='vendor-order-update'),
 
     path('menu/vendor/<int:vendor_id>/', VendorMenuView.as_view(), name='vendor-menu'),
+
+    path('ratings/submit/<int:vendor_order_id>/', SubmitRatingView.as_view(), name='submit-rating'),
+    path('ratings/vendor/<int:vendor_id>/', VendorRatingListView.as_view(), name='vendor-ratings'),
+    path('ratings/vendor/<int:vendor_id>/average/', VendorAverageRatingView.as_view(), name='vendor-average-rating'),
 ]

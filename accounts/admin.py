@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django import forms
-from .models import User
+from .models import User, CustomerProfile
 
 class CustomUserForm(forms.ModelForm):
     ROLE_CHOICES = [
@@ -41,3 +41,4 @@ class CustomUserAdmin(UserAdmin):
     )
 
 admin.site.register(User, CustomUserAdmin)
+admin.site.register(CustomerProfile)

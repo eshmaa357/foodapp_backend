@@ -1,7 +1,9 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
-from .models import FoodItem, FoodItemHistory, Order, VendorOrder, OrderItem
-from .serializers import FoodItemSerializer, OrderSerializer, VendorOrderSerializer
+from .models import (FoodItem, FoodItemHistory, Order, VendorOrder,
+                    OrderItem,Rating)
+from .serializers import (FoodItemSerializer, OrderSerializer, 
+                          VendorOrderSerializer,RatingSerializer)
 from vendor.models import VendorProfile
 from django.shortcuts import get_object_or_404
 import hashlib
@@ -107,7 +109,7 @@ class CustomerMenuView(generics.ListAPIView):
 
                 all_items.extend(shuffled[:half])
 
-                return all_items      
+        return all_items      
 
 
 # Customer - place an order
@@ -247,3 +249,60 @@ class VendorMenuView(generics.ListAPIView):
     def get_queryset(self):
         vendor_id = self.kwargs['vendor_id']
         return FoodItem.objects.filter(restaurant__id==vendor_id,is_available=True)
+
+
+class SubmitRatingView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self,request,vendor_order_id):
+        try:
+            vendor_order = VendorOrder.objects.get(
+                id=vendor_order_id,
+                order__customer = request.user
+            )
+        except VendorOrder.DoesNotExist:
+            return Response({'error': 'Order not found'}, status=status.HTTP_400_BAD_REQUEST)            
+
+        if vendor_order.status != 'picked':
+            return Response({'error': 'You can only rate after the order is picked up'},status=status.HTTP_400_BAD_REQUEST)
+
+        if Rating.objects.filter(customer=request.user, vendor=vendor_order.vendor,order=vendor_order).exists():
+            return Response({'error':'You have already rated this order'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            stars = int(stars)
+            if stars < 1 or stars > 5:
+                raise ValueError
+        except ValueError:
+            return Response({'error':'Stars must be a number between 1 and 5'},status=status.HTTP_400_BAD_REQUEST)
+
+        rating = Rating.objects.create(
+        customer = request.user,
+        vendor = vendor_order.vendor,
+        order = vendor_order,
+        stars = stars
+        )
+        return Response(RatingSerializer(rating).data, status=status.HTTP_201_CREATED)
+
+class VendorRatingListView(generics.ListAPIView):
+    serializer_class = RatingSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        vendor_id = self.kwargs['vendor_id']
+        return Rating.objects.filter(vendor__id = vendor_id).order_by('-created_at')
+
+class VendorAverageRatingView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self,rqueest,vendor_id):
+        ratings =Rating.objects.filter(vendor__id = vendor_id)
+        if not ratings.exists():
+            return Response({'average':0,'total':0})
+
+        avg = sum(r.stars for r in ratings) / ratings.count()
+        return Response({
+            'vendor_id': vendor_id,
+            'average': round(avg,1),
+            'total': ratings.count()
+                          })

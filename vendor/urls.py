@@ -12,7 +12,7 @@ from .views import (
     VendorFoodHistoryView,
     VendorFoodDetailPageView,
     VendorOrderPageView,
-    VendorOrderUpdatePageView,
+    VendorOrderUpdatePageView, VendorRatingPageView
 )
 
 urlpatterns = [
@@ -34,5 +34,7 @@ urlpatterns = [
 
     path('orders/', VendorOrderPageView.as_view(), name='vendor-order-page'),
     path('orders/<int:pk>/update/', VendorOrderUpdatePageView.as_view(), name='vendor-order-update-page'),
+
+    path('ratings/',VendorRatingPageView.as_view(),name='vendor-rating-page'),
 ]
 
